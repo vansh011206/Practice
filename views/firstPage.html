@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pandemic Response Dashboard</title>
+    <link rel="stylesheet" href="firstPage.css" />
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Leaflet.js for Maps -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+
+    <!-- ScrollReveal for Animations -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!-- Leaflet Heatmap Plugin -->
+    <script src="https://unpkg.com/leaflet-heat/dist/leaflet-heat.js"></script>
+  </head>
+
+  <body>
+    <!-- Sticky Navbar -->
+    <nav class="navbar">
+      <div class="nav-logo">
+        <!-- <h1>Pandemic Dashboard</h1> -->
+        <img src="logo.png" alt="" />
+        <div class="nav-items">
+          <a href="/dashyy">Analytical Dashboard</a>
+          <a href="/request">Raise a Request</a>
+          <a href="/stats">Statistics</a>
+        </div>
+      </div>
+      <ul>
+        <li><a href="#map">Global Map</a></li>
+        <li><a href="#charts">Statistics</a></li>
+        <li><a href="#alerts">Live Alerts</a></li>
+        <li><a href="#subscribe">Subscribe</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="hero-image">
+        <img src="dil.jpeg" alt="Pandemic Image" />
+      </div>
+      <div class="hero-content">
+        <h1>Global Pandemic Response Dashboard</h1>
+        <p>Track outbreaks, monitor resources, and take action in real-time.</p>
+        <button class="explore-btn" onclick="window.location.href='#map'">
+          Explore Now
+        </button>
+      </div>
+    </header>
+
+    <!-- Global Statistics Section -->
+    <section id="global-stats" class="global-stats">
+      <div class="giving-info">
+        <div class="dropdown-container">
+          <label for="country-select">Select Country:</label>
+          <select id="country-select">
+            <option value="" disabled selected>Select a country</option>
+          </select>
+        </div>
+        <div class="country-info">
+          <div class="name" id="country-name"></div>
+          <div class="flag" id="country-flag"></div>
+        </div>
+      </div>
+      <div class="pandemic-data">
+        <div class="stat-card">
+          <h3>Active Cases</h3>
+          <p id="active-cases">Loading...</p>
+        </div>
+        <div class="stat-card">
+          <h3>Recovered</h3>
+          <p id="recovered">Loading...</p>
+        </div>
+        <div class="stat-card">
+          <h3>Deaths</h3>
+          <p id="deaths">Loading...</p>
+        </div>
+        <div class="stat-card">
+          <h3>Vaccinated</h3>
+          <p id="vaccinated">Loading...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map Section -->
+    <section id="map" class="map-section">
+      <h2>Global Pandemic Hotspots</h2>
+      <div id="pandemic-map"></div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="charts" class="charts">
+      <h2>Real-Time Pandemic Statistics</h2>
+      <div class="chart-container">
+        <canvas id="infectionRateChart"></canvas>
+        <canvas id="resourceAvailabilityChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Live Alerts Section -->
+    <section id="alerts" class="alerts">
+      <h2>Live Alerts</h2>
+      <div id="alert-container" class="alert-container"></div>
+    </section>
+
+    <!-- Subscription Section -->
+    <section id="subscribe" class="subscribe">
+      <h2>Stay Updated with Live Alerts</h2>
+      <input
+        type="email"
+        id="email-input"
+        placeholder="Enter your email"
+        required
+      />
+      <button id="subscribe-btn">Subscribe</button>
+    </section>
+    <div class="popup" id="popup">
+      <span class="popup-text" id="popup-text"></span>
+      <button class="close-popup btn" id="close-popup">Close</button>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+      <p>
+        &copy; 2025 Pandemic Response Tool | Powered by Global Health Initiative
+      </p>
+    </footer>
+
+    <script src="firstPage.js"></script>
+  </body>
+</html>

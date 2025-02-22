@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raise a Request</title>
+    <link rel="stylesheet" href="request.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Available Resources</h1>
+        <div class="resources-container">
+            <div class="resource-category">
+                <!-- <h2>Medical Supplies</h2> -->
+                <div class="resource-card" data-type="medical">
+                    <img src="doctor.png" alt="Medical Supplies">
+                    <h3>Medical Supplies</h3>
+                    <p>50 available</p>
+                </div>
+            </div>
+            <div class="resource-category">
+                <!-- <h2>Food Assistance</h2> -->
+                <div class="resource-card" data-type="food">
+                    <img src="food.png" alt="Food Assistance">
+                    <h3>Food Assistance</h3>
+                    <p>Providing soon</p>
+                </div>
+            </div>
+            <div class="resource-category">
+                <!-- <h2>Shelter</h2> -->
+                <div class="resource-card" data-type="shelter">
+                    <img src="shelter.png" alt="Shelter">
+                    <h3>Shelter</h3>
+                    <p>currently unavailable</p>
+                </div>
+            </div>
+        </div>
+        <div class="raise">
+            <h2>Want to Raise a request?</h2>
+            <button id="showFormButton">Fill this form</button>
+        </div>
+        <div id="requestFormContainer" class="request-form-container">
+            <form id="requestForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+
+                <label for="contact">Contact Information:</label>
+                <input type="text" id="contact" required>
+
+                <label for="requestType">Request Type:</label>
+                <select id="requestType" required>
+                    <option value="">Select...</option>
+                    <option value="medical">Medical Supplies</option>
+                    <option value="food">Food Assistance</option>
+                    <option value="shelter">Shelter</option>
+                </select>
+
+                <label for="description">Description:</label>
+                <textarea id="description" rows="4" required></textarea>
+
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" required>
+
+                <label for="location">Location:</label>
+                <input type="text" id="location" required>
+
+                <button class="submit" type="submit">Submit Request</button>
+            </form>
+        </div>
+        <div id="message" class="message"></div>
+
+        <h2>Recent Hospitals</h2>
+        <div id="hospitalsList" class="hospitals-list">
+            <div class="hospital-card">
+                <h3>City Hospital</h3>
+                <p>Address: 123 Main St, City</p>
+                <p>Contact: (123) 456-7890</p>
+            </div>
+            <div class="hospital-card">
+                <h3>General Hospital</h3>
+                <p>Address: 456 Elm St, City</p>
+                <p>Contact: (987) 654-3210</p>
+            </div>
+        </div>
+    </div>
+    <script src="request.js"></script>
+</body>
+
+</html>
+
+<script>
+
+</script>

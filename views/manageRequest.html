@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Requests</title>
+    <link rel="stylesheet" href="manageRequest.css">
+</head>
+
+<body>
+    <div class="availability">
+        <h1>Available Resources</h1>
+        <div class="resources-container">
+            <div class="resource-category">
+                <div class="resource-card" data-type="medical">
+                    <img src="doctor.png" alt="Medical Supplies">
+                    <h3>Medical Supplies</h3>
+                    <p>50 available</p>
+                </div>
+            </div>
+            <div class="resource-category">
+                <div class="resource-card" data-type="food">
+                    <img src="food.png" alt="Food Assistance">
+                    <h3>Food Assistance</h3>
+                    <p>100 available</p>
+                </div>
+            </div>
+            <div class="resource-category">
+                <div class="resource-card" data-type="shelter">
+                    <img src="shelter.png" alt="Shelter">
+                    <h3>Shelter</h3>
+                    <p>20 available</p>
+                </div>
+            </div>
+        </div>
+        <div class="manage-request">
+            <button id="showFormButton">Manage Requests</button>
+        </div>
+    </div>
+
+    <section id="requestFormContainer">`
+        <div class="container">
+            <header class="header">
+                <h1>Manage Requests</h1>
+            </header>
+            <div class="filter">
+                <input type="text" id="search" placeholder="Search by User ID..." onkeyup="filterRequests()">
+                <button class="button" onclick="openAddRequestModal()">Add Request</button>
+            </div>
+            <table id="requestTable" class="table">
+                <thead>
+                    <tr>
+                        <th>Request ID</th>
+                        <th>Name</th>
+                        <th>User ID</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="request-1">
+                        <td>1</td>
+                        <td>user1</td>
+                        <td>Pending</td>
+                        <td><button onclick="viewRequestDetails(1)">View</button></td>
+                    </tr>
+                    <tr id="request-2">
+                        <td>2</td>
+                        <td>user2</td>
+                        <td>Approved</td>
+                        <td><button onclick="viewRequestDetails(2)">View</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal for Viewing/Updating Request -->
+        <div id="viewRequestModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('viewRequestModal')">&times;</span>
+                <h2>Request Details</h2>
+                <p id="requestDetails"></p>
+                <div id="updateButtons" style="display: none;">
+                    <button class="button approve" onclick="approveRequest()">Approve</button>
+                    <button class="button reject" onclick="rejectRequest()">Reject</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Adding a New Request -->
+        <div id="addRequestModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('addRequestModal')">&times;</span>
+                <h2>Add New Request</h2>
+                <form id="addRequestForm">
+                    <label for="userId">User ID:</label>
+                    <input type="text" id="userId" required>
+                    <label for="description">Description:</label>
+                    <textarea id="description" required></textarea>
+                    <button type="submit" class="button">Add Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="manageRequest.js"></script>
+</body>
+
+</html>
+
+
+<script>
+    let userEmail = localStorage.getItem('email');
+
+    // Check if email exists in localStorage
+    if (!userEmail) {
+        // Redirect if no email is found in localStorage
+        window.location.href = '/request';
+        return; // Exit the function
+    }
+
+    // Make the fetch request to check the email
+    fetch('/check-email', {
+        headers: {
+            'x-user-email': userEmail // userEmail from the frontend (e.g., from session or authentication)
+        }
+    })
+    .then(response => {
+        if (response.status === 200) {
+            // Access granted, do nothing (email is valid)
+        } else {
+            // Access denied, redirect to /request if email is not valid
+            window.location.href = '/request';
+        }
+    })
+    .catch(error => {
+        console.error('Error checking email:', error);
+        // If there is an error (e.g., network issue), redirect to /request
+        window.location.href = '/request';
+    });
+</script>
+
+
+</script>
